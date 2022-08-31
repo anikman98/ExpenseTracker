@@ -4,13 +4,13 @@ import Layout from '../Layout';
 function Home() {
   return (
     <Layout pageTitle={"Welcome"}>
-      {/*<div className="container">
+      <div className="container">
         <div className="row">
-          <div className="col-md">*/}
+          <div className="col-md-6">
             <p>This you dashboard!</p>
-          {/*</div>
+          </div>
         </div>
-      </div> */}
+      </div>
     </Layout>
   )
 }

@@ -1,4 +1,5 @@
-import React from 'react'
+import React, {useState} from 'react'
+import {Inertia} from '@inertiajs/inertia'
 
 const RegisterForm = () => {
 
@@ -7,9 +8,21 @@ const RegisterForm = () => {
         'password' : ''
     });
 
-    const handleSubmit = ({event}) => {
-        event.preventDefault();
+    const [passConfirm, setPassConfirm] = useState();
 
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        console.log(event);
+    }
+
+    const handleChange = (event) => {
+        console.log(event);
+        // if(event.currentTarget.name === 'passwordConfirm'){
+        //     setPassConfirm(event.currentTarget.value);
+        // }
+        setState({
+            ...state, [event.currentTarget.name]: event.currentTarget.value
+        });
     }
 
   return (
@@ -21,11 +34,11 @@ const RegisterForm = () => {
         </div>
         <div class="mb-3">
             <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control" id="password" onChange={handleChange} />
+            <input type="password" class="form-control" id="password" onChange={handleChange} name="password" />
         </div>
-        <div class="mb-3 form-check">
-            <label class="form-check-label" for="exampleCheck1">Check me out</label>
-            <input type="password" class="form-check-input" id="exampleCheck1" />
+        <div class="mb-3">
+            <label class="form-label" for="passwordConfirm">Confitm Password</label>
+            <input type="password" class="form-control" id="passwordConfirm" onChange={handleChange} name="passwordConfirm"/>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>

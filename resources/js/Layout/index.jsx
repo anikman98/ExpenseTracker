@@ -12,14 +12,9 @@ const Layout = ({pageTitle, children}) => {
     return (
     <div className="container">
         <Menu/>
-        <div className="container">
-            <div className="card">
-                <div className="card-header">
-                    <h5>{pageTitle}</h5>
-                </div>
-                <div className="card-body">
-                    {children}
-                </div>
+        <div className="d-flex justify-content-center">
+            <div className="container">
+                {children}
             </div>
         </div>
     </div>
