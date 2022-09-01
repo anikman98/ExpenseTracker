@@ -23,4 +23,4 @@ Route::get('/register', [RegisterController::class, 'create'])->name('register.c
 Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
 Route::get('/thanks', function(){
     return Inertia::render('Auth/Thanks');
-});
+})->name('thanks');

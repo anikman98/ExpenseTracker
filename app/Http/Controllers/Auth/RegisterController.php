@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 
 
@@ -39,28 +40,33 @@ class RegisterController extends Controller
      */
     public function store(Request $request)
     {
-        return $request->all();
-        if($request['password'] !== $request['passwordConfirm'])
-            return redirect()->back()->withInput();
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:8'
-        ]);
+        // return $request->all();
+        if($request['password'] === $request['passwordConfirm']){
 
-        // $credentials = $request->only('email', 'password');
-        // if(Auth::attempt($credentials)) {
-        //     return redirect()->route('thankyou')->with('success', 'User Created!');
-        // }
-        // $userData = 
+            $request->validate([
+                'name' => 'required',
+                'email' => 'required|email|unique:users,email',
+                'password' => 'required|min:8'
+            ]);
 
-        $check = User::create($request);
+            unset($request['passwordConfirm']);
+            // return $request->all();
 
-        if($check)    
-            return redirect()->route('thanks')->with('success', 'User Created');
-        else
-            return redirect()->back()->with('errors', 'Failed to create User!');
-        
+            $user = new User;
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->password = Hash::make($request->password);
+            $check = $user->save();
+
+            if($check)    
+                return redirect()->route('thanks')->with('success', 'User Created');
+            else
+                return redirect()->back()->with('errors', 'Failed to create User!');
+        }else{
+            // return redirect()->back()->with('errors', 'Paswords do not match')->withInput();
+            return "something went wrong!";
+        }
+
     }
 
     /**

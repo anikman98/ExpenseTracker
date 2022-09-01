@@ -2380,6 +2380,52 @@ var Register = function Register() {
 
 /***/ }),
 
+/***/ "./resources/js/Pages/Auth/Thanks.jsx":
+/*!********************************************!*\
+  !*** ./resources/js/Pages/Auth/Thanks.jsx ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Layout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Layout */ "./resources/js/Layout/index.jsx");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+
+
+var Thanks = function Thanks() {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Layout__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    pageTitle: "",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+      className: "card mt-3",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+        className: "card-body",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h4", {
+          children: "Thanks for registering!"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
+          children: ["Please login to continue ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.InertiaLink, {
+            href: '/login',
+            children: "Click here."
+          })]
+        })]
+      })
+    })
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Thanks);
+
+/***/ }),
+
 /***/ "./resources/js/Pages/Home.jsx":
 /*!*************************************!*\
   !*** ./resources/js/Pages/Home.jsx ***!
@@ -59693,6 +59739,8 @@ module.exports = {
 var map = {
 	"./Auth/Register": "./resources/js/Pages/Auth/Register.jsx",
 	"./Auth/Register.jsx": "./resources/js/Pages/Auth/Register.jsx",
+	"./Auth/Thanks": "./resources/js/Pages/Auth/Thanks.jsx",
+	"./Auth/Thanks.jsx": "./resources/js/Pages/Auth/Thanks.jsx",
 	"./Home": "./resources/js/Pages/Home.jsx",
 	"./Home.jsx": "./resources/js/Pages/Home.jsx"
 };
