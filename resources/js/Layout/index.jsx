@@ -6,9 +6,6 @@ import Menu from '../Component/Menu'
 
 const Layout = ({pageTitle, children}) => {
   
-
-    // console.log(sharedData);
-  
     return (
     <div className="container">
         <Menu/>

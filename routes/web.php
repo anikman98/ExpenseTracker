@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\HomeController;
 use Inertia\Inertia;
 
 /*
@@ -19,8 +21,16 @@ Route::get('/', function () {
     return Inertia::render('Home');
 });
 
+Route::group(['middleware' => ['auth']], function(){
+    Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
+});
+
+
+//Auth routes
 Route::get('/register', [RegisterController::class, 'create'])->name('register.create');
-Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
+Route::post('/register', [RegisterController::class, 'store']);
+Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::post('/login', [LoginController::class, 'login']);
 Route::get('/thanks', function(){
     return Inertia::render('Auth/Thanks');
 })->name('thanks');
