@@ -40,16 +40,19 @@ class RegisterController extends Controller
     public function store(Request $request)
     {
         return $request->all();
+        if($request['password'] !== $request['passwordConfirm'])
+            return redirect()->back()->withInput();
         $request->validate([
             'name' => 'required',
-            'email' => 'required | email | unique:users,email ',
-            'password' => 'required | min:8'
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:8'
         ]);
 
         // $credentials = $request->only('email', 'password');
         // if(Auth::attempt($credentials)) {
         //     return redirect()->route('thankyou')->with('success', 'User Created!');
         // }
+        // $userData = 
 
         $check = User::create($request);
 

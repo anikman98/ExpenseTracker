@@ -1,46 +1,48 @@
 import React, {useState} from 'react'
 import {Inertia} from '@inertiajs/inertia'
+import {route} from 'ziggy-js'
 
 const RegisterForm = () => {
 
     const [state, setState] = useState({
+        'name' : '',
         'email' : '',
-        'password' : ''
+        'password' : '',
+        'passwordConfirm' : ''
     });
-
-    const [passConfirm, setPassConfirm] = useState();
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(event);
+        Inertia.post('/register', state);
     }
 
     const handleChange = (event) => {
-        console.log(event);
-        // if(event.currentTarget.name === 'passwordConfirm'){
-        //     setPassConfirm(event.currentTarget.value);
-        // }
+        console.log(state);
         setState({
-            ...state, [event.currentTarget.name]: event.currentTarget.value
+            ...state, [event.target.name]: event.target.value
         });
     }
 
   return (
     <form onSubmit={handleSubmit}>
-        <div class="mb-3">
-            <label for="email" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" value={state.email} onChange={handleChange} />
-            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        <div className="mb-3">
+            <label htmlFor="name" className="form-label">Name</label>
+            <input type="name" className="form-control" id="name" name='name' value={state.name} onChange={handleChange} />
+        </div> 
+        <div className="mb-3">
+            <label htmlFor="email" className="form-label">Email address</label>
+            <input type="email" className="form-control" id="email" name='email' aria-describedby="emailHelp" value={state.email} onChange={handleChange} />
+            <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
         </div>
-        <div class="mb-3">
-            <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control" id="password" onChange={handleChange} name="password" />
+        <div className="mb-3">
+            <label htmlFor="password" className="form-label">Password</label>
+            <input type="password" className="form-control" id="password" onChange={handleChange} name="password" />
         </div>
-        <div class="mb-3">
-            <label class="form-label" for="passwordConfirm">Confitm Password</label>
-            <input type="password" class="form-control" id="passwordConfirm" onChange={handleChange} name="passwordConfirm"/>
+        <div className="mb-3">
+            <label className="form-label" htmlFor="passwordConfirm">Confitm Password</label>
+            <input type="password" className="form-control" id="passwordConfirm" onChange={handleChange} name="passwordConfirm"/>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" className="btn btn-primary">Submit</button>
     </form>
   )
 }
