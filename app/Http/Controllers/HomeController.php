@@ -16,7 +16,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Home');
+        return Inertia::render('Home',[
+            'expenses' => Expense::where('user_id', Auth::user()->id)->latest()->take(10)->get()
+        ]);
     }
 
     /**
