@@ -29,6 +29,7 @@ Route::get('/register', [RegisterController::class, 'create'])->name('register')
 Route::post('/register', [RegisterController::class, 'store']);
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
+Route::get('/logout', [LoginController::class, 'logout'])->middleware('auth')->name('logout');
 Route::get('/thanks', function(){
     return Inertia::render('Auth/Thanks');
 })->name('thanks');

@@ -12,7 +12,6 @@ const LoginForm = () => {
         setState({
             ...state, [event.target.name] : event.target.value
         })
-        console.log(state);
     }
 
     const handleSubmit = (event) => {

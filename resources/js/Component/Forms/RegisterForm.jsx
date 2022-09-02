@@ -17,7 +17,6 @@ const RegisterForm = () => {
     }
 
     const handleChange = (event) => {
-        console.log(state);
         setState({
             ...state, [event.target.name]: event.target.value
         });
