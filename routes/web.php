@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\HomeController;
 use Inertia\Inertia;
 
@@ -21,6 +22,20 @@ Route::get('/', [HomeController::class, 'welcome'])->name('welcome');
 
 Route::group(['middleware' => ['auth']], function(){
     Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
+
+/********************************************************************************************************/
+/*                                   Expense Routes                                                     */
+/********************************************************************************************************/
+
+Route::group(['prefix' => 'expense'], function(){
+    Route::get('/', [ExpenseController::class, 'index'])->name('expense.list');
+    Route::get('/add', [ExpenseController::class, 'create'])->name('expense.create');
+    Route::post('/add', [ExpenseController::class, 'store']);
+    Route::get('/edit/{expense}', [ExpenseController::class, 'edit'])->name('expense.edit');
+    Route::post('/update/{expense}', [ExpenseController::class, 'update']);
+    Route::get('/delete/{expense}', [ExpenseController::class, 'delete']);
+});
+
 });
 
 
