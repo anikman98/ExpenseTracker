@@ -19,7 +19,7 @@ const Menu = () => {
                     <a className="nav-link active" aria-current="page" href={'/dashboard'}>Home</a>
                     </li>
                     <li className="nav-item">
-                    <a className="nav-link" href="#">Features</a>
+                    <InertiaLink className="nav-link" href={'/expense'}>Expenses</InertiaLink>
                     </li>
                 </ul>
                 <ul className="navbar-nav ms-auto">
