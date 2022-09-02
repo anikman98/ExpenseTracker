@@ -16,10 +16,8 @@ use Inertia\Inertia;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', [HomeController::class, 'welcome'])->name('welcome');
 
-Route::get('/', function () {
-    return Inertia::render('Home');
-});
 
 Route::group(['middleware' => ['auth']], function(){
     Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
@@ -27,7 +25,7 @@ Route::group(['middleware' => ['auth']], function(){
 
 
 //Auth routes
-Route::get('/register', [RegisterController::class, 'create'])->name('register.create');
+Route::get('/register', [RegisterController::class, 'create'])->name('register');
 Route::post('/register', [RegisterController::class, 'store']);
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);

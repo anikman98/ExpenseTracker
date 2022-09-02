@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class HomeController extends Controller
@@ -22,9 +23,13 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function welcome()
     {
-        //
+        if(Auth::user()){
+            return redirect()->route('dashboard');
+        }else{
+            return Inertia::render('Welcome');
+        }
     }
 
     /**

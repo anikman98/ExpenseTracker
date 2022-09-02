@@ -8,11 +8,11 @@ function Home() {
 
   return (
     <Layout pageTitle={"Welcome"}>
-      <div className="container">
+      <div className="container mt-4">
         <div className="card">
-          <div className="card-header"></div>
+          {/*<div className="card-header"></div> */}
           <div className="card-body">
-            <h3>Hello {pageData.props.auth.user.name}!</h3>
+            <h1>Hello {pageData.props.auth.user.name}!</h1>
             <p>This you dashboard!</p>
           </div>
         </div>

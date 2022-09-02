@@ -7,7 +7,7 @@ import Menu from '../Component/Menu'
 const Layout = ({pageTitle, children}) => {
   
     return (
-    <div className="container">
+    <div className="">
         <Menu/>
         <div className="d-flex justify-content-center">
             <div className="container">
