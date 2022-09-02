@@ -1,8 +1,17 @@
 import React from 'react'
 import Layout from '../../Layout';
 import {InertiaLink} from '@inertiajs/inertia-react'
+import { Inertia } from '@inertiajs/inertia';
 
 const Expense = ({expenses}) => {
+
+    const handleDelete = (id) => {
+        const confirmDelete = confirm('Are you sure?');
+        if(confirmDelete){
+            Inertia.get('/expense/delete/'+id);
+        }
+    }
+
   return (
     <Layout>
         <div className="container mt-3">
@@ -18,8 +27,8 @@ const Expense = ({expenses}) => {
                     </div>
                     <div className="card mt-3">
                         <div className="card-body">
-                            {expenses.length > 0 
-                                ? <table class="table">
+                            {expenses.data.length > 0
+                                ? <table className="table">
                                     <thead>
                                         <tr>
                                             <th scope="col">#</th>
@@ -31,12 +40,12 @@ const Expense = ({expenses}) => {
                                             <th scope="col">Actions</th>
                                         </tr>
                                     </thead>
-                                    <tbody class="table-group-divider">
+                                    <tbody className="table-group-divider">
                                         {
-                                            expenses.map((expense, index) => {
+                                            expenses.data.map((expense, index) => {
                                                 return (
                                                     <tr key={index}>
-                                                        <th scope='row'>{expense.id}</th>
+                                                        <th scope='row'>{index+1}</th>
                                                         <td>{expense.date}</td>
                                                         <td>{expense.description}</td>
                                                         <td>{expense.amount}</td>
@@ -44,7 +53,7 @@ const Expense = ({expenses}) => {
                                                         <td>{expense.method}</td>
                                                         <td>
                                                             <InertiaLink className='btn btn-primary btn-sm' href={'/expense/edit/'+expense.id}>Edit</InertiaLink>
-                                                            &nbsp;&nbsp;<InertiaLink className='btn btn-danger btn-sm' href={'/expense/delete/'+expense.id}>Delete</InertiaLink>
+                                                            &nbsp;&nbsp;<button className='btn btn-danger btn-sm' onClick={() => handleDelete(expense.id)}>Delete</button>
                                                         </td>
                                                     </tr>
                                                 )

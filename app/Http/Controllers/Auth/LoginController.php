@@ -43,9 +43,12 @@ class LoginController extends Controller
             'email' => 'required|email|exists:users,email',
             'password' => 'required|min:8'
         ]);
-
+        $remember = false;
         $credentials = $request->only('email', 'password');
-        if(Auth::attempt($credentials)){
+        if($request['remember'] === "on"){
+            $remember = true;
+        }
+        if(Auth::attempt($credentials, $remember)){
             return redirect()->route('dashboard');
         }else{
             return redirect()->back()->withInput()->with('errors', 'Login Failed! Please try again.');

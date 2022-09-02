@@ -5,7 +5,8 @@ const LoginForm = () => {
 
     const [state, setState] = useState({
         email: '',
-        password: ''
+        password: '',
+        remember: ''
     });
 
     const handleChange = (event) => {
@@ -29,6 +30,12 @@ const LoginForm = () => {
             <div className="mb-3">
                 <label htmlFor="password" className="form-label">Password</label>
                 <input type="password" className="form-control" id="password" onChange={handleChange} name="password" />
+            </div>
+            <div className="mb-3 form-check">
+                <input className="form-check-input" type="checkbox" name="remember" id="remember" onChange={handleChange} />
+                <label className="form-check-label" htmlFor="flexCheckDefault">
+                    Remember me
+                </label>
             </div>
             <button type="submit" className="btn btn-primary">Submit</button>
         </form>

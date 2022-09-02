@@ -36,7 +36,8 @@ class ExpenseController extends Controller
      */
     public function index()
     {
-        $expenses = Expense::where('user_id', Auth::user()->id)->orderBy('date')->get();
+        $expenses = Expense::where('user_id', Auth::user()->id)->orderBy('date')->paginate(10);
+        // return $expenses;
         return Inertia::render('Expense/Index', [
             'expenses' => $expenses
         ]);
@@ -64,17 +65,9 @@ class ExpenseController extends Controller
      */
     public function store(Request $request)
     {
-        
-        // return $request->all();
+
         $validatedData = $this->validate($request, $this->rules);
         $validatedData['user_id'] = Auth::user()->id;
-
-        // $expense = new Expense;
-        // $expense->date = $request['date'];
-        // $expense->description = $request['description'];
-        // $expense->amount = $request['amount'];
-        // $expense->category = $request['category'];
-        // $expense->method = $re
 
         Expense::create($validatedData);
 
@@ -101,7 +94,11 @@ class ExpenseController extends Controller
      */
     public function edit(Expense $expense)
     {
-        //
+        return Inertia::render('Expense/Edit', [
+            'expense' => $expense,
+            'expense_category' => $this->expense_category,
+            'payment_method' => $this->payment_method
+        ]);
     }
 
     /**
@@ -113,7 +110,18 @@ class ExpenseController extends Controller
      */
     public function update(Request $request, Expense $expense)
     {
-        //
+
+        $validatedData = $this->validate($request, $this->rules);
+        unset($validatedData['id']);
+
+        $action = $expense->update($validatedData);
+
+        if($action == 1){
+            return redirect()->route('expense.list')->with('success', 'Expense updated!');
+        }else{
+            return redirect()->back()->withInput($request->input())->with('errors', 'Something went wrong!');
+        }
+
     }
 
     /**
@@ -124,6 +132,8 @@ class ExpenseController extends Controller
      */
     public function destroy(Expense $expense)
     {
-        //
+        // return $expense;
+        $expense->delete();
+        return redirect()->route('expense.list')->with('success', 'Expense delete Successfully!');
     }
 }
