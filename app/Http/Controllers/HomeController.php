@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use App\Models\Expense;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -16,8 +17,24 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $month = new Carbon;
+        $labels = [$month->now()->subMonth()->subMonth()->shortLocaleMonth, $month->now()->subMonth()->shortLocaleMonth, $month->now()->shortLocaleMonth];
+        $dataset = Expense::where('user_id', Auth::user()->id)->get();
+        $values = array(
+            $labels[0] => 0,
+            $labels[1] => 0,
+            $labels[2] => 0
+        );
+        foreach($dataset as $data){
+            if(in_array(Carbon::parse($data->date)->shortLocaleMonth, $labels)){
+               $values[Carbon::parse($data->date)->shortLocaleMonth] += $data->amount; 
+           }
+
+        }
         return Inertia::render('Home',[
-            'expenses' => Expense::where('user_id', Auth::user()->id)->latest()->take(10)->get()
+            'expenses' => Expense::where('user_id', Auth::user()->id)->latest()->take(10)->get(),
+            'labels' => $labels,
+            'values' => $values
         ]);
     }
 

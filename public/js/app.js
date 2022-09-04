@@ -3127,7 +3127,9 @@ __webpack_require__.r(__webpack_exports__);
 chart_js__WEBPACK_IMPORTED_MODULE_3__.Chart.register(chart_js__WEBPACK_IMPORTED_MODULE_3__.CategoryScale, chart_js__WEBPACK_IMPORTED_MODULE_3__.LinearScale, chart_js__WEBPACK_IMPORTED_MODULE_3__.PointElement, chart_js__WEBPACK_IMPORTED_MODULE_3__.LineElement, chart_js__WEBPACK_IMPORTED_MODULE_3__.Title, chart_js__WEBPACK_IMPORTED_MODULE_3__.Tooltip, chart_js__WEBPACK_IMPORTED_MODULE_3__.Legend);
 
 function Home(_ref) {
-  var expenses = _ref.expenses;
+  var expenses = _ref.expenses,
+      labels = _ref.labels,
+      values = _ref.values;
   var pageData = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.usePage)();
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Layout__WEBPACK_IMPORTED_MODULE_1__["default"], {
     pageTitle: "Welcome",
@@ -3166,15 +3168,16 @@ function Home(_ref) {
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_chartjs_2__WEBPACK_IMPORTED_MODULE_5__.Line, {
                   datasetIdKey: "id",
                   data: {
-                    labels: ['Jun', 'Jul', 'Aug'],
+                    labels: labels,
                     datasets: [{
-                      id: 1,
-                      label: 'Line A',
-                      data: [5, 6.5, 7]
-                    }, {
-                      id: 2,
-                      label: 'Line B',
-                      data: [3, 2.5, 1]
+                      label: 'Money spent',
+                      data: values,
+                      fill: false,
+                      pointRadius: 5,
+                      borderColor: '#2196f3',
+                      backgroundColor: '#ffffff',
+                      borderWidth: 2,
+                      tension: 0.25
                     }]
                   }
                 })]

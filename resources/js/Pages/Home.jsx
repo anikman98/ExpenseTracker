@@ -15,7 +15,7 @@ import { Line } from 'react-chartjs-2'
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 
-function Home({expenses}) {
+function Home({expenses, labels, values}) {
 
   const pageData = usePage();
 
@@ -38,18 +38,18 @@ function Home({expenses}) {
                   <Line
                     datasetIdKey='id'
                     data={{
-                      labels: ['Jun', 'Jul', 'Aug'],
+                      labels: labels,
                       datasets: [
                         {
-                          id: 1,
-                          label: 'Line A',
-                          data: [5, 6.5, 7],
-                        },
-                        {
-                          id: 2,
-                          label: 'Line B',
-                          data: [3, 2.5, 1],
-                        },
+                          label: 'Money spent',
+                          data: values,
+                          fill: false,
+                          pointRadius: 5,
+                          borderColor: '#2196f3',
+                          backgroundColor: '#ffffff',
+                          borderWidth: 2,
+                          tension: 0.25
+                        }
                       ],
                     }}
                   />
