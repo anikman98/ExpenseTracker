@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Inertia\Inertia;
 use App\Models\Expense;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Inertia\Inertia;
 
-class HomeController extends Controller
+class StatsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,36 +18,46 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $month = new Carbon;
-        $labels = [
-            $month->now()->subMonth()->subMonth()->subMonth()->subMonth()->subMonth()->shortLocaleMonth." ".$month->now()->subMonth()->subMonth()->subMonth()->subMonth()->subMonth()->year,
-            $month->now()->subMonth()->subMonth()->subMonth()->subMonth()->shortLocaleMonth." ".$month->now()->subMonth()->subMonth()->subMonth()->subMonth()->year,
-            $month->now()->subMonth()->subMonth()->subMonth()->shortLocaleMonth." ".$month->now()->subMonth()->subMonth()->subMonth()->year,
-            $month->now()->subMonth()->subMonth()->shortLocaleMonth." ".$month->now()->subMonth()->subMonth()->year,
-            $month->now()->subMonth()->shortLocaleMonth." ".$month->now()->subMonth()->year,
-            $month->now()->shortLocaleMonth." ".$month->now()->year
-        ];
-        dd($labels);
+        $labels = [];
+        for($i=0; $i<12; $i++){
+            if($i==0){
+                $labels[] = Carbon::now()->shortLocaleMonth." ".Carbon::now()->year;
+            }else{
+                $labels[] = Carbon::parse($labels[$i-1])->subMonth()->shortLocaleMonth." ".Carbon::parse($labels[$i-1])->subMonth()->year;
+            }
+        }
         $dataset = Expense::where('user_id', Auth::user()->id)->get();
         $values = array(
-            $labels[0] => 0,
-            $labels[1] => 0,
-            $labels[2] => 0,
-            $labels[3] => 0,
+            $labels[11] => 0,
+            $labels[10] => 0,
+            $labels[9] => 0,
+            $labels[8] => 0,
+            $labels[7] => 0,
+            $labels[6] => 0,
+            $labels[5] => 0,
             $labels[4] => 0,
-            $labels[5] => 0
+            $labels[3] => 0,
+            $labels[2] => 0,
+            $labels[1] => 0,
+            $labels[0] => 0
         );
-        dd($values);
         foreach($dataset as $data){
             $date=Carbon::parse($data->date)->shortLocaleMonth." ".Carbon::parse($data->date)->year;
             if(in_array($date, $labels)){
-               $values[$date] += $data->amount; 
+               $values[$date] += $data->amount;
            }
         }
-        return Inertia::render('Home',[
-            'expenses' => Expense::where('user_id', Auth::user()->id)->latest()->take(10)->get(),
-            'labels' => $labels,
-            'values' => $values
+        $categories = Expense::where('user_id', Auth::user()->id)->groupBy('category')->pluck('category');
+        $categoryAmount = Expense::where('user_id', Auth::user()->id)->select(DB::raw('sum(amount)'))->groupBy('category')->pluck('sum');
+        $methods = Expense::where('user_id', Auth::user()->id)->groupBy('method')->pluck('method');
+        $methodAmount = Expense::where('user_id', Auth::user()->id)->select(DB::raw('sum(amount)'))->groupBy('method')->pluck('sum');
+        return Inertia::render('Stats/Index',[
+            'labels' => array_reverse($labels),
+            'values' => $values,
+            'categories' => $categories,
+            'categoryAmount' => $categoryAmount,
+            'methods' => $methods,
+            'methodAmount' => $methodAmount,
         ]);
     }
 
@@ -55,13 +66,9 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function welcome()
+    public function create()
     {
-        if(Auth::user()){
-            return redirect()->route('dashboard');
-        }else{
-            return Inertia::render('Welcome');
-        }
+        //
     }
 
     /**

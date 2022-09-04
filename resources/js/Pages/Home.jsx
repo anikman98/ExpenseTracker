@@ -42,14 +42,13 @@ function Home({expenses, labels, values}) {
                   <div className="col-md mb-4">
                     <h1 className='display-6 mb-4' style={{fontSize: '2em'}}>Total Expense this month</h1>
                     
-                    <h1 className='' style={{fontSize: '4em'}}>${values[labels[labels.length-1]]}</h1>
+                    <h1 className='' style={{fontSize: '4em'}}>₹{values[labels[labels.length-1]]}</h1>
                   </div>
                 </div>
                   <h1 className='display-6 mt-2 mb-2' style={{fontSize: '2em'}}>Monthly Expense</h1>
                   <Line
                     datasetIdKey='id'
                     data={{
-                      labels: labels,
                       datasets: [
                         {
                           label: 'Money spent',
@@ -62,6 +61,14 @@ function Home({expenses, labels, values}) {
                           tension: 0.250
                         }
                       ],
+                    }}
+                    options = {{
+                        responsize: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
                     }}
                   />
                 </div>

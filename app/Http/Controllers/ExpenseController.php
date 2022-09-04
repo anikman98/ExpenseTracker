@@ -36,7 +36,7 @@ class ExpenseController extends Controller
      */
     public function index()
     {
-        $expenses = Expense::where('user_id', Auth::user()->id)->orderBy('date')->paginate(10);
+        $expenses = Expense::where('user_id', Auth::user()->id)->orderByDesc('date')->paginate(10);
         // return $expenses;
         return Inertia::render('Expense/Index', [
             'expenses' => $expenses

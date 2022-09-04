@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\StatsController;
 use Inertia\Inertia;
 
 /********************************************************************************************************/
@@ -17,6 +18,8 @@ Route::get('/', [HomeController::class, 'welcome'])->name('welcome');
 
 Route::group(['middleware' => ['auth']], function(){
     Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
+
+    Route::get('/stats', [StatsController::class, 'index'])->name('stats');
 
 
 /********************************************************************************************************/

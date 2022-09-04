@@ -6,6 +6,8 @@ const Menu = () => {
 
     const sharedData = usePage();
 
+    const currentUrl = window.location.href;
+
     return (
     <nav className="navbar navbar-expand-lg bg-light">
         <div className="container-fluid">
@@ -16,10 +18,13 @@ const Menu = () => {
             <div className="collapse navbar-collapse" id="navbarNav">
                 <ul className="navbar-nav">
                     <li className="nav-item">
-                    <a className="nav-link active" aria-current="page" href={'/dashboard'}>Home</a>
+                        <InertiaLink className={currentUrl.includes('dashboard') ? "nav-link active" : "nav-link" } href={'/dashboard'}>Home</InertiaLink>
                     </li>
                     <li className="nav-item">
-                    <InertiaLink className="nav-link" href={'/expense'}>Expenses</InertiaLink>
+                        <InertiaLink className={currentUrl.includes('expense') ? "nav-link active" : "nav-link" } href={'/expense'}>Expenses</InertiaLink>
+                    </li>
+                    <li className="nav-item">
+                        <InertiaLink className={currentUrl.includes('stats') ? "nav-link active" : "nav-link" } href={'/stats'}>Stats</InertiaLink>
                     </li>
                 </ul>
                 <ul className="navbar-nav ms-auto">
