@@ -3131,6 +3131,7 @@ function Home(_ref) {
       labels = _ref.labels,
       values = _ref.values;
   var pageData = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.usePage)();
+  var dateObject = new Date();
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Layout__WEBPACK_IMPORTED_MODULE_1__["default"], {
     pageTitle: "Welcome",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
@@ -3144,9 +3145,9 @@ function Home(_ref) {
           },
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("h1", {
             className: "display-4",
-            children: ["Hello ", pageData.props.auth.user.name, "!"]
+            children: [dateObject.getHours() < 12 ? "Good morning " : dateObject.getHours() < 17 ? "Good afternoon " : "Good evening ", " ", pageData.props.auth.user.name, "!"]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
-            children: "This you dashboard!"
+            children: "Welcome to your dashboard!"
           })]
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
@@ -3154,13 +3155,31 @@ function Home(_ref) {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
           className: "row",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-            className: "col-md",
+            className: "col-md mb-4",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
               className: "card",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
                 className: "card-body",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h1", {
-                  className: "display-6 mb-4",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+                  className: "row",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                    className: "col-md mb-4",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h1", {
+                      className: "display-6 mb-4",
+                      style: {
+                        fontSize: '2em'
+                      },
+                      children: "Total Expense this month"
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("h1", {
+                      className: "",
+                      style: {
+                        fontSize: '4em'
+                      },
+                      children: ["$", values[labels[labels.length - 1]]]
+                    })]
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h1", {
+                  className: "display-6 mt-2 mb-2",
                   style: {
                     fontSize: '2em'
                   },
@@ -3177,7 +3196,7 @@ function Home(_ref) {
                       borderColor: '#2196f3',
                       backgroundColor: '#ffffff',
                       borderWidth: 2,
-                      tension: 0.25
+                      tension: 0.250
                     }]
                   }
                 })]
@@ -3198,7 +3217,7 @@ function Home(_ref) {
                     },
                     children: "Expenses"
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("table", {
-                    className: "table mt-3",
+                    className: "table mt-3 mb-3",
                     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("thead", {
                       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("tr", {
                         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("th", {

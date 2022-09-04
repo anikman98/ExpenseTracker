@@ -18,12 +18,21 @@ class HomeController extends Controller
     public function index()
     {
         $month = new Carbon;
-        $labels = [$month->now()->subMonth()->subMonth()->shortLocaleMonth, $month->now()->subMonth()->shortLocaleMonth, $month->now()->shortLocaleMonth];
+        $labels = [
+            $month->now()->subMonth()->subMonth()->subMonth()->subMonth()->subMonth()->shortLocaleMonth,
+            $month->now()->subMonth()->subMonth()->subMonth()->subMonth()->shortLocaleMonth,
+            $month->now()->subMonth()->subMonth()->subMonth()->shortLocaleMonth,
+            $month->now()->subMonth()->subMonth()->shortLocaleMonth,
+            $month->now()->subMonth()->shortLocaleMonth,
+            $month->now()->shortLocaleMonth];
         $dataset = Expense::where('user_id', Auth::user()->id)->get();
         $values = array(
             $labels[0] => 0,
             $labels[1] => 0,
-            $labels[2] => 0
+            $labels[2] => 0,
+            $labels[3] => 0,
+            $labels[4] => 0,
+            $labels[5] => 0
         );
         foreach($dataset as $data){
             if(in_array(Carbon::parse($data->date)->shortLocaleMonth, $labels)){
