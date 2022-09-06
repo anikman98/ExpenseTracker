@@ -26,7 +26,7 @@ class HomeController extends Controller
             $month->now()->subMonth()->shortLocaleMonth." ".$month->now()->subMonth()->year,
             $month->now()->shortLocaleMonth." ".$month->now()->year
         ];
-        dd($labels);
+        // dd($labels);
         $dataset = Expense::where('user_id', Auth::user()->id)->get();
         $values = array(
             $labels[0] => 0,
@@ -36,7 +36,7 @@ class HomeController extends Controller
             $labels[4] => 0,
             $labels[5] => 0
         );
-        dd($values);
+        // dd($values);
         foreach($dataset as $data){
             $date=Carbon::parse($data->date)->shortLocaleMonth." ".Carbon::parse($data->date)->year;
             if(in_array($date, $labels)){
