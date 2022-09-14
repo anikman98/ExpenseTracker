@@ -1,5 +1,6 @@
 import React from 'react'
 import Layout from '../../Layout'
+import '../../../css/stats.css'
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -22,17 +23,18 @@ const Stats = ({labels, values, categories, categoryAmount, methods, methodAmoun
   return (
     <Layout>
         <h1 className='display-4 mt-4 mb-4'>Stats</h1>
-        <div className="card mb-5">
+        <div className="card mb-4">
             <div className="card-body">
                 <div className="row">
                     <div className="col-md">
                         <h1 className='display-6 mb-4' style={{'fontSize': '2em'}}>Last 12 months expenses</h1>
                         <Bar 
+                        className='bar-chart'
                         data={{
                                 labels: labels,
                                 datasets: [
                                     {
-                                        labels: ["Monthly Expenses"],
+                                        label: "Monthly Expenses",
                                         data: values,
                                         backgroundColor: [
                                             'rgba(255, 99, 132, 0.2)',
@@ -77,50 +79,61 @@ const Stats = ({labels, values, categories, categoryAmount, methods, methodAmoun
                         />
                     </div>
                 </div>
+            </div>
+        </div>
+        <div className="card mb-4">
+            <div className="card-body">
                 <div className="row">
                     <div className="col-md">
-                        <h1 className='display-6 mt-4 mb-4' style={{'fontSize': '2em'}}>Expenses by Category</h1>
-                        <div className="">
-                        <PolarArea
-                            data={{
-                                labels: categories,
-                                datasets: [
-                                    {
-                                    label: categories,
-                                    data: categoryAmount,
-                                    backgroundColor: [
-                                        'rgba(255, 99, 132, 0.5)',
-                                        'rgba(54, 162, 235, 0.5)',
-                                        'rgba(255, 206, 86, 0.5)',
-                                        'rgba(75, 192, 192, 0.5)',
-                                    ],
-                                    borderWidth: 1,
-                                    },
-                                ],
-                            }}
-                        />
-                        </div>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col-md">
-                        <h1 className='display-6 mt-4 mb-4' style={{'fontSize': '2em'}}>Expenses by payment method</h1>
-                        <Pie 
-                            data={{
-                                labels: [...methods],
-                                datasets: [
-                                    {
-                                        data: methodAmount,
+                        <h1 className='display-6 mb-4' style={{'fontSize': '2em'}}>Expenses by Category</h1>
+                        <div className='polar-area'>
+                            <PolarArea
+                                
+                                data={{
+                                    labels: categories,
+                                    datasets: [
+                                        {
+                                        label: categories,
+                                        data: categoryAmount,
                                         backgroundColor: [
                                             'rgba(255, 99, 132, 0.5)',
                                             'rgba(54, 162, 235, 0.5)',
                                             'rgba(255, 206, 86, 0.5)',
                                             'rgba(75, 192, 192, 0.5)',
                                         ],
-                                    }
-                                ]
-                            }}
-                        />
+                                        borderWidth: 1,
+                                        },
+                                    ],
+                                }}
+                            />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div className="card mb-4">
+            <div className="card-body">
+                <div className="row">
+                    <div className="col-md">
+                        <h1 className='display-6 mb-4' style={{'fontSize': '2em'}}>Expenses by payment method</h1>
+                        <div className='pie-chart'>
+                            <Pie 
+                                data={{
+                                    labels: [...methods],
+                                    datasets: [
+                                        {
+                                            data: methodAmount,
+                                            backgroundColor: [
+                                                'rgba(255, 99, 132, 0.5)',
+                                                'rgba(54, 162, 235, 0.5)',
+                                                'rgba(255, 206, 86, 0.5)',
+                                                'rgba(75, 192, 192, 0.5)',
+                                            ],
+                                        }
+                                    ]
+                                }}
+                            />
+                        </div>
                     </div>
                 </div>
             </div>

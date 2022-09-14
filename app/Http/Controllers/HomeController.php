@@ -19,14 +19,13 @@ class HomeController extends Controller
     {
         $month = new Carbon;
         $labels = [
-            $month->now()->subMonth()->subMonth()->subMonth()->subMonth()->subMonth()->shortLocaleMonth." ".$month->now()->subMonth()->subMonth()->subMonth()->subMonth()->subMonth()->year,
-            $month->now()->subMonth()->subMonth()->subMonth()->subMonth()->shortLocaleMonth." ".$month->now()->subMonth()->subMonth()->subMonth()->subMonth()->year,
-            $month->now()->subMonth()->subMonth()->subMonth()->shortLocaleMonth." ".$month->now()->subMonth()->subMonth()->subMonth()->year,
-            $month->now()->subMonth()->subMonth()->shortLocaleMonth." ".$month->now()->subMonth()->subMonth()->year,
+            $month->now()->subMonth(5)->shortLocaleMonth." ".$month->now()->subMonth(5)->year,
+            $month->now()->subMonth(4)->shortLocaleMonth." ".$month->now()->subMonth(4)->year,
+            $month->now()->subMonth(3)->shortLocaleMonth." ".$month->now()->subMonth(3)->year,
+            $month->now()->subMonth(2)->shortLocaleMonth." ".$month->now()->subMonth(2)->year,
             $month->now()->subMonth()->shortLocaleMonth." ".$month->now()->subMonth()->year,
             $month->now()->shortLocaleMonth." ".$month->now()->year
         ];
-        // dd($labels);
         $dataset = Expense::where('user_id', Auth::user()->id)->get();
         $values = array(
             $labels[0] => 0,
@@ -36,7 +35,7 @@ class HomeController extends Controller
             $labels[4] => 0,
             $labels[5] => 0
         );
-        // dd($values);
+
         foreach($dataset as $data){
             $date=Carbon::parse($data->date)->shortLocaleMonth." ".Carbon::parse($data->date)->year;
             if(in_array($date, $labels)){
