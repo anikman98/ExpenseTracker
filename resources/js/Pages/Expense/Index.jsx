@@ -26,10 +26,10 @@ const Expense = ({expenses}) => {
                             <InertiaLink className='btn btn-success float-end mt-4' href={'/expense/add'}>Add New</InertiaLink>
                         </div>
                     </div>
-                    <div className="card mt-3">
+                    <div className="card mt-3 mb-4">
                         <div className="card-body">
                             {expenses.data.length > 0
-                                ? <div className="">
+                                ? <div className="table-responsive">
                                     <table className="table">
                                         <thead>
                                             <tr>

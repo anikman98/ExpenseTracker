@@ -75,11 +75,11 @@ function Home({expenses, labels, values}) {
               </div>
             </div>
             <div className="col-md">
-              <div className="card">
+              <div className="card mb-4">
                 <div className="card-body">
                     {
                       expenses.length > 0
-                      ? <div className=""> 
+                      ? <div className="table-responsive"> 
                           <h1 className='display-6' style={{fontSize: '2em'}}>Expenses</h1>
                           <table className="table mt-3 mb-3">
                             <thead>
