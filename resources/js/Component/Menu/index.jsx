@@ -1,6 +1,7 @@
 import React from 'react'
 import {InertiaLink ,usePage} from '@inertiajs/inertia-react'
 import {route} from 'ziggy-js'
+import '../../../css/app.css'
 
 const Menu = () => {
 
@@ -16,7 +17,7 @@ const Menu = () => {
                 <span className="navbar-toggler-icon"></span>
             </button>
             <div className="collapse navbar-collapse" id="navbarNav">
-                <ul className="navbar-nav">
+                <ul className="navbar-nav center">
                     <li className="nav-item">
                         <InertiaLink className={currentUrl.includes('dashboard') ? "nav-link active" : "nav-link" } href={'/dashboard'}>Home</InertiaLink>
                     </li>

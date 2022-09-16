@@ -1,0 +1,44 @@
+
+/**********************************************************************
+                    Dashboard Page
+**********************************************************************/
+
+.navbar-brand{
+    padding-left: 1rem;
+    font-size: 1.5em;
+}
+
+.dropdown{
+    padding-right: 1rem;
+}
+
+.center{
+    position:fixed;
+    left: 50%;
+    font-size: 1.1em;
+    transform: translate(-50%);
+}
+
+@media screen and (max-width: 992px) {
+    .center{
+        position:initial;
+        /* left: auto; */
+        transform: none;
+    }
+    .navbar-nav{
+        padding-left: 1.5rem;
+    }
+}
+
+/**********************************************************************
+                    Welcome Page
+**********************************************************************/
+.welcome{
+    text-align: center;
+    margin: auto;
+    top: 45%;
+    left: 50%;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    vertical-align: middle;
+}

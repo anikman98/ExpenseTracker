@@ -8,7 +8,9 @@ const Layout = ({pageTitle, children}) => {
   
     return (
     <div className="">
-        <Menu/>
+    {
+        pageTitle == 'welcome' ? <div></div> : <Menu/>
+    }
         <div className="d-flex justify-content-center">
             <div className="container">
                 {children}
